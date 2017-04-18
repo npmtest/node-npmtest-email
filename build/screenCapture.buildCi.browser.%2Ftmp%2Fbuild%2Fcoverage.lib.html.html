@@ -1,0 +1,1336 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-email/node_modules/email/index.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-email">npmtest-email (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-email/node_modules/email/index.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">34.75% <small>(41 / 118)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">22.22% <small>(16 / 72)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">44.44% <small>(8 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">36.28% <small>(41 / 113)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-email/node_modules/email/</a> » index.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">70</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+// - node-email Copyright Aaron Heckmann &lt;aaron.heckmann+github@gmail.com&gt; (MIT Licensed)
+&nbsp;
+/**
+ * Module dependencies.
+ */
+&nbsp;
+var spawn = require('child_process').spawn;
+&nbsp;
+/**
+ * Generates a boundry string.
+ * @return {String}
+ */
+&nbsp;
+var boundryidx = 0;
+function genBoundry () {
+  return 'part_' + Date.now() + "_" + boundryidx++;
+}
+&nbsp;
+/**
+ * Email : Sends email using the sendmail command.
+ *
+ * Note: sendmail must be installed: see http://www.sendmail.org/
+ *
+ * @param {Object} config - optional configuration object
+ *    - to {array|string} Email address(es) to which this msg will be sent
+ *    - from {string} Email address from which this msg is sent. If not set
+ *      defaults to the `exports.from` global setting.
+ *    - replyTo {string} Email address to which replies will be sent. If not
+ *      set defaults to `from`
+ *    - cc {array|string} Email address(es) who receive a copy
+ *    - bcc {array|string} Email address(es) who receive a blind copy
+ *    - subject {string} The subject of the email
+ *    - body {string} The message of the email
+ *    - bodyType {string} Content type of body. Only valid option is
+ *      'html' (for now). Defaults to text/plain.
+ *    - altText {string} If `bodyType` is set to 'html', this will be sent
+ *      as the alternative text.
+ *    - timeout {number} Duration in milliseconds to wait before killing the
+ *      process. If not set, defaults to `exports.timeout` global setting.
+ *    - path {string} Optional path to the sendmail executable.
+ *
+ * Global settings
+ *    - exports.timeout {number} Duration in milliseconds to wait before
+ *      killing the process. Defaults to 3000. Used when `timeout` is not set
+ *      on a message.
+ *    - exports.from {string} Email address from which messages are sent. Used
+ *      when `from` was not set on a message.
+ *
+ * Example:
+ *    var Email = require('path/to/email').Email
+ *    var myMsg = new Email(
+ *    { from: 'me@example.com'
+ *    , to:   'you@example.com'
+ *    , subject: 'Knock knock...'
+ *    , body: "Who's there?"
+ *    })
+ *    myMsg.send(function(err){
+ *      ...
+ *    })
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered">function Email (config) {</span>
+<span class="cstat-no" title="statement not covered">  config = config || {};</span>
+&nbsp;
+  ; <span class="cstat-no" title="statement not covered">['to'</span>
+    ,'from'
+    ,'cc'
+    ,'bcc'
+    ,'replyTo'
+    ,'subject'
+    ,'body'
+    ,'bodyType'
+    ,'altText'
+    ,'timeout' ].forEach(<span class="fstat-no" title="function not covered">function (key) {</span>
+<span class="cstat-no" title="statement not covered">    this[key] = config[key];</span>
+  }, this);
+&nbsp;
+<span class="cstat-no" title="statement not covered">  this.path = config.path || "sendmail";</span>
+}
+&nbsp;
+&nbsp;
+Email.prototype = {
+&nbsp;
+  send: <span class="fstat-no" title="function not covered">function (callback) {</span>
+<span class="cstat-no" title="statement not covered">    if (!this.valid(callback)) <span class="cstat-no" title="statement not covered">return;</span></span>
+<span class="cstat-no" title="statement not covered">    var sendmail = spawn(this.path, ['-i', '-t'], this.options);</span>
+<span class="cstat-no" title="statement not covered">    sendmail.on('exit', <span class="fstat-no" title="function not covered">function(code) {</span></span>
+<span class="cstat-no" title="statement not covered">      var err = null;</span>
+<span class="cstat-no" title="statement not covered">      if (code !== 0) {</span>
+<span class="cstat-no" title="statement not covered">        err = new Error("Sendmail exited with code: " + code);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (callback) {</span>
+<span class="cstat-no" title="statement not covered">        callback(err);</span>
+      }
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered">    sendmail.stdin.end(this.msg);</span>
+  }
+&nbsp;
+, get options () {
+    return { timeout: this.timeout || exports.timeout };
+  }
+&nbsp;
+, get msg () {
+    var msg = new Msg()
+      , boundry = genBoundry()
+      , to = formatAddress(this.to)
+      , cc = formatAddress(this.cc)
+      , bcc = formatAddress(this.bcc)
+      , html = this.bodyType &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered">'html' === this.bodyType.toLowerCase()</span>
+      , plaintext = !html ? this.body
+          : <span class="branch-1 cbranch-no" title="branch not covered">this.altText  ? this.altText</span>
+          : '';
+&nbsp;
+    msg.line('To: ' + to);
+    msg.line('From: '+ (this.from || exports.from));
+    msg.line('Reply-To: ' + (this.replyTo || this.from || exports.from));
+    msg.line('Subject: '+ this.subject);
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken">I</span>if (cc) <span class="cstat-no" title="statement not covered">msg.line('CC: ' + cc);</span>
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken">I</span>if (bcc) <span class="cstat-no" title="statement not covered">msg.line('BCC: ' + bcc);</span>
+&nbsp;
+    msg.line('Mime-Version: 1.0');
+    msg.line('Content-Type: multipart/alternative; boundary=' + boundry);
+    msg.line();
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken">I</span>if (plaintext) {
+<span class="cstat-no" title="statement not covered">      msg.line('--' + boundry);</span>
+<span class="cstat-no" title="statement not covered">      msg.line('Content-Type: text/plain; charset=utf-8');</span>
+<span class="cstat-no" title="statement not covered">      msg.line('Content-Disposition: inline');</span>
+<span class="cstat-no" title="statement not covered">      msg.line();</span>
+<span class="cstat-no" title="statement not covered">      msg.line(plaintext);</span>
+<span class="cstat-no" title="statement not covered">      msg.line();</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken">I</span>if (html) {
+<span class="cstat-no" title="statement not covered">      msg.line('--' + boundry);</span>
+<span class="cstat-no" title="statement not covered">      msg.line('Content-Type: text/html; charset=utf-8');</span>
+<span class="cstat-no" title="statement not covered">      msg.line('Content-Transfer-Encoding: Base64');</span>
+<span class="cstat-no" title="statement not covered">      msg.line('Content-Disposition: inline');</span>
+<span class="cstat-no" title="statement not covered">      msg.line();</span>
+<span class="cstat-no" title="statement not covered">      msg.line(this.encodedBody);</span>
+<span class="cstat-no" title="statement not covered">      msg.line();</span>
+    }
+&nbsp;
+    return msg.toString();
+  }
+&nbsp;
+, get encodedBody () {
+    var encoded = (new Buffer(this.body)).toString('base64')
+      , len = encoded.length
+      , size = 100
+      , start = 0
+      , ret = ''
+      , chunk;
+&nbsp;
+<span class="cstat-no" title="statement not covered">    while (chunk = encoded.substring(start, start + size &gt; len ? len : start + size)) {</span>
+<span class="cstat-no" title="statement not covered">      ret += chunk + '\n';</span>
+<span class="cstat-no" title="statement not covered">      start += size;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    return ret;</span>
+  }
+&nbsp;
+, valid: <span class="fstat-no" title="function not covered">function (callback) {</span>
+<span class="cstat-no" title="statement not covered">    if (!requiredFieldsExist(this, callback)) <span class="cstat-no" title="statement not covered">return false;</span></span>
+<span class="cstat-no" title="statement not covered">    if (!fieldsAreClean(this, callback)) <span class="cstat-no" title="statement not covered">return false;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var validatedHeaders = ['to','from','cc','bcc','replyTo']</span>
+      , len = validatedHeaders.length
+      , self = this
+      , addresses
+      , addLen
+      , key;
+&nbsp;
+<span class="cstat-no" title="statement not covered">    while (len--) {</span>
+<span class="cstat-no" title="statement not covered">      key = validatedHeaders[len];</span>
+<span class="cstat-no" title="statement not covered">      if (self[key]) {</span>
+<span class="cstat-no" title="statement not covered">        addresses = toArray(self[key]);</span>
+<span class="cstat-no" title="statement not covered">        addLen = addresses.length;</span>
+<span class="cstat-no" title="statement not covered">        while (addLen--) {</span>
+<span class="cstat-no" title="statement not covered">          if (!isValidAddress(addresses[addLen])) {</span>
+<span class="cstat-no" title="statement not covered">            return error("invalid email address : " + addresses[addLen], callback);</span>
+          }
+        }
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    return true;</span>
+  }
+}
+&nbsp;
+&nbsp;
+/**
+ * Email message constructor.
+ *
+ * @return {Msg}
+ */
+&nbsp;
+function Msg () {
+  this.lines = [];
+}
+&nbsp;
+Msg.prototype = {
+&nbsp;
+  line: function (text) {
+    this.lines.push(text || '');
+  }
+&nbsp;
+, toString: function () {
+    return this.lines.join('\n').replace(/"/g, '\\"');
+  }
+}
+&nbsp;
+/**
+ * Validation helpers.
+ */
+&nbsp;
+var cleanHeaders = ['to','from','cc','bcc','replyTo','subject']
+  , injectionrgx = new RegExp(cleanHeaders.join(':|') + ':|content\-type:', 'i');
+&nbsp;
+/**
+ * Determines if any email headers contain vulnerabilities.
+ *
+ * @param {Email} email
+ * @param {Function} callback
+ * @return {Bool}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered">function fieldsAreClean (email, callback) {</span>
+<span class="cstat-no" title="statement not covered">  var len = cleanHeaders.length</span>
+    , header
+    , vlen
+    , vals
+    , val;
+&nbsp;
+<span class="cstat-no" title="statement not covered">  while (len--) {</span>
+<span class="cstat-no" title="statement not covered">    header = cleanHeaders[len];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (!email[header]) {</span>
+<span class="cstat-no" title="statement not covered">      continue;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    vals = toArray(email[header]);</span>
+<span class="cstat-no" title="statement not covered">    vlen = vals.length;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    while (vlen--) {</span>
+<span class="cstat-no" title="statement not covered">      val = vals[vlen];</span>
+<span class="cstat-no" title="statement not covered">      if (val) {</span>
+<span class="cstat-no" title="statement not covered">        if (injectionrgx.test(val) || ~val.indexOf("%0a") || ~val.indexOf("%0d")) {</span>
+<span class="cstat-no" title="statement not covered">          return error("Header injection detected in [" + header + "]", callback);</span>
+        }
+<span class="cstat-no" title="statement not covered">        vals[vlen] = val.replace(/\n|\r/ig, '');</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    email[header] = 2 &gt; vals.length</span>
+      ? vals[0]
+      : vals;
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  return true;</span>
+}
+&nbsp;
+/**
+ * Determines if all required email fields exist.
+ *
+ * @param {Email} email
+ * @param {Function} callback
+ * @return {Bool}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered">function requiredFieldsExist (email, callback) {</span>
+<span class="cstat-no" title="statement not covered">  if (!email.from &amp;&amp; !exports.from) {</span>
+<span class="cstat-no" title="statement not covered">    return error('from is required', callback);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (!email.to) {</span>
+<span class="cstat-no" title="statement not covered">    return error('to is required', callback);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (!email.subject) {</span>
+<span class="cstat-no" title="statement not covered">    return error('subject is required', callback);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  return true;</span>
+}
+&nbsp;
+/**
+ * Error helper that throws if no callback is passed. Else
+ * executes the callback passing the err as the first argument.
+ *
+ * @param {String} msg
+ * @param {Function} callback
+ * @return {Bool|undefined}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered">function error (msg, callback) {</span>
+<span class="cstat-no" title="statement not covered">  var err = new Error('node-email error: ' + msg);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (callback) {</span>
+<span class="cstat-no" title="statement not covered">    callback(err);</span>
+<span class="cstat-no" title="statement not covered">    return false;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  throw err;</span>
+}
+&nbsp;
+/**
+ * Formats an array of addresses as a string.
+ *
+ * @param {Array|String} what
+ * @return {String}
+ */
+&nbsp;
+function formatAddress (what) {
+  return Array.isArray(what)
+    ? <span class="branch-0 cbranch-no" title="branch not covered">what.join(', ')</span>
+    : what;
+}
+&nbsp;
+/**
+ * Converts `what` to an array.
+ *
+ * @param {Mixed} what
+ * @return {Array}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered">function toArray (what) {</span>
+<span class="cstat-no" title="statement not covered">  return Array.isArray(what)</span>
+    ? what
+    : [what];
+}
+&nbsp;
+/**
+ * Email validation regexps.
+ * @see http://fightingforalostcause.net/misc/2006/compare-email-regex.php
+ */
+&nbsp;
+var emailrgx = /^[-a-z0-9~!$%^&amp;*_=+}{\'?]+(\.[-a-z0-9~!$%^&amp;*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-zрф]{2,6})|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+&nbsp;
+var capturergx = /&lt;([^&gt;].*)&gt;$/;
+&nbsp;
+/**
+ * Determines if `rawAddress` is a valid email address.
+ *
+ * @param {String} rawAddress
+ * @return {Bool}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered">function isValidAddress (rawAddress) {</span>
+  // john smith &lt;email@domain.com&gt; | email@domain.com
+<span class="cstat-no" title="statement not covered">  var address = capturergx.exec(rawAddress);</span>
+<span class="cstat-no" title="statement not covered">  return address &amp;&amp; address[1]</span>
+    ? emailrgx.test(address[1])
+    : emailrgx.test(rawAddress);
+}
+&nbsp;
+/**
+ * Exports.
+ */
+&nbsp;
+exports.Email = Email;
+exports.version = '0.2.4';
+exports.from = undefined;
+exports.timeout = 3000;
+exports.isValidAddress = isValidAddress;
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 18 2017 11:13:00 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
